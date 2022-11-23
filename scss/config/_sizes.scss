@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "sass:math";
+
+// Base size value for width and heigth of 1
+$baseSizeVal: 0.25rem;
+
+$sizes: (
+    0: 0,
+    'px': 1px,
+    'full': 100%,
+    'auto': auto,
+    0.5: math.div($baseSizeVal, 2),
+);
+
+// Makes sizes from 1 to 14
+@for $i from 1 through 14 {
+    $sizes: map.set($sizes, $i, $baseSizeVal * $i)
+}
+// from 16 to 64 with steps of 4 so (64-16) / 4 = 12
+@for $i from 0 through 12 {
+    $sizes: map.set($sizes, 16+($i * 4), $baseSizeVal * (16+($i * 4)))
+}
+
+$sizes: map.set($sizes,72, $baseSizeVal * 72);
+$sizes: map.set($sizes,80, $baseSizeVal * 80);
+$sizes: map.set($sizes,96, $baseSizeVal * 96);

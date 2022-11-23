@@ -1,0 +1,14 @@
+@use "sass:math";
+@use "sass:map";
+
+$perc_sizes: ();
+
+@for $i from 2 through 6 {
+    @for $j from 1 to $i {
+        $perc_sizes: map.set($perc_sizes, '#{$j}/#{$i}', math.div(100%, $i) * $j)
+    }
+}
+
+@for $i from 0 through 12 {
+    $perc_sizes: map.set($perc_sizes, '#{$i}/12', math.div(100%, 12) * $i);
+}

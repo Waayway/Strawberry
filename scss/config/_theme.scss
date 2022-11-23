@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "sass:color";
+//
+// Config for colors.
+// All colors in the map have to have the defaultcolor value as a key in the map of a color.
+//
+$colors: (
+  "red": #dc2626,
+  "orange": #ea580c,
+  "yellow": #facc15,
+  "green": #16a34a,
+  "cyan": #0891b2,
+  "blue": #2563eb,
+  "purple":#9333ea,
+  "pink": #db2777,
+);
+
+$darkenPercentage: 30%;
+$lightenPercentage: 30%;
+
+
+@function get-color($color) {
+  @return map.get($colors, $color);
+}
+
+@function get-darker-color($color) {
+  @return darken(map.get($colors, $color), $darkenPercentage);
+}
+
+@function get-lighter-color($color) {
+  @return lighten(map.get($colors, $color), $lightenPercentage);
+}

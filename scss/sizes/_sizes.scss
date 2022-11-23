@@ -1,0 +1,35 @@
+@use "../util/str_replace";
+@import '../config/percentile_sizes';
+@import '../config/sizes';
+
+.w-screen {
+    width: 100vw;
+}
+.h-screen {
+    height: 100vh;
+}
+
+
+@if variable-exists("perc_sizes") {
+    @each $suffix, $size in $perc_sizes {
+        $escaped_suffix: str_replace.escape_characters($suffix);
+        .w-#{$escaped_suffix} {
+            width: $size;
+        }
+        .h-#{$escaped_suffix} {
+            height: $size;
+        }
+    }
+}
+
+@if variable-exists("sizes") {
+    @each $suffix, $size in $sizes {
+        $escaped_suffix: str_replace.escape_characters($suffix);
+        .w-#{$escaped_suffix} {
+            width: $size;
+        }
+        .h-#{$escaped_suffix} {
+            height: $size;
+        }
+    }
+}

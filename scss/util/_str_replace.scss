@@ -1,0 +1,28 @@
+@use 'sass:string';
+
+@function str-trim($string) {
+  @if (str-slice($string, 1, 1) == ' ') {
+    @return str-trim(str-slice($string, 2));
+  } @else if (str-slice($string, str-length($string), -1) == ' ') {
+    @return str-trim(str-slice($string, 1, -2));
+  } @else {
+    @return $string;
+  }
+}
+
+@function add_escape_characters($string, $char) {
+  $index: str-index(#{$string}, #{$char});
+  @if $index {
+    $temp-str: str-insert(#{$string}, str-trim(string.quote( \ )), $index);
+    @return $temp-str;
+  }
+  @return $string;
+}
+
+@function escape_characters($string) {
+  $temp-str: $string;
+  $temp-str: add_escape_characters($temp-str, '/');
+  $temp-str: add_escape_characters($temp-str, '.');
+  $temp-str: add_escape_characters($temp-str, ',');
+  @return $temp-str;
+}

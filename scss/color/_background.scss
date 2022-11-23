@@ -1,0 +1,13 @@
+@if variable-exists("colors") {
+  @each $prefix, $color in $colors {
+    .bg-#{$prefix} {
+      background-color: $color;
+    }
+    .bg-#{$prefix}-darker {
+      background-color: get-darker-color($prefix);
+    }
+    .bg-#{$prefix}-lighter {
+      background-color: get-darker-color($prefix);
+    }
+  }
+}
